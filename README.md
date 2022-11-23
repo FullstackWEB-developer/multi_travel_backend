@@ -1,1 +1,1 @@
-# multi-travel-backend
+# MERN Stack Scaffold with typescript
