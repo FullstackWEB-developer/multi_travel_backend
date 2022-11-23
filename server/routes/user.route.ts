@@ -85,7 +85,7 @@ const userRoutes = () => {
 
   router.post("/update", auth, async (req, res) => {
     try {
-      const {first_name, last_name, gender, email, country, city, birthday, about_me, phone_number} = req.body
+      const {first_name, last_name, gender, email, country, city, birthday, about_me, phone_number, credit_card_number, holder_name, client_address} = req.body
 
       // user.update({
       //   first_name: first_name,
@@ -115,7 +115,12 @@ const userRoutes = () => {
             city: city,
             birthday: birthday,
             about_me: about_me,
-            phone_number: phone_number
+            phone_number: phone_number,
+            billing_data : {
+              credit_card_number: credit_card_number,
+              holder_name: holder_name,
+              client_address: client_address,
+            } 
           },
         }
       );
