@@ -6,7 +6,8 @@ import dotenv from "dotenv";
 // user defined
 import { User } from "../models/user.model";
 import auth from "../middleware/auth.middleware";
-import { join } from "path";
+const path = require("path");
+
 
 
 dotenv.config();
@@ -87,20 +88,6 @@ const userRoutes = () => {
     try {
       const {first_name, last_name, gender, email, country, city, birthday, about_me, phone_number, credit_card_number, holder_name, client_address} = req.body
 
-      // user.update({
-      //   first_name: first_name,
-      //   last_name:  last_name,
-      //   gender: gender,
-      //   email:  email,
-      //   country:  country,
-      //   city: city,
-      //   birthday: birthday,
-      //   about_me: about_me,
-      //   phone_number: phone_number
-      // });
-
-      // return res.json(user);
-
       await User.findByIdAndUpdate(
         {
           _id: req.body.user.id
@@ -131,6 +118,11 @@ const userRoutes = () => {
       res.status(500).send("Server Error");
     }
   });
+
+  router.post("/upload", auth, async (req, res) => {
+    console.log(req.files);    
+  });
+
 
   return router;
 };

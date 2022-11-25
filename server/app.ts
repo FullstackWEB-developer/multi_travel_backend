@@ -8,6 +8,8 @@ import path from "path";
 import connectDB from "./config";
 import authRoutes from "./routes/auth.route";
 import userRoutes from "./routes/user.route";
+import bookingRoutes from "./routes/booking.route";
+import uploadRoutes from "./routes/upload";
 
 const app = express();
 app.use(compression());
@@ -23,7 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Define Routes
 app.use("/api/auth", authRoutes());
 app.use("/api/user", userRoutes());
-
+app.use("/api/booking", bookingRoutes());
+app.use("/api/upload", uploadRoutes());
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
