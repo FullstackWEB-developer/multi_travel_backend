@@ -86,7 +86,7 @@ const userRoutes = () => {
 
   router.post("/update", auth, async (req, res) => {
     try {
-      const {first_name, last_name, gender, email, country, city, birthday, about_me, phone_number, credit_card_number, holder_name, client_address} = req.body
+      const {first_name, last_name, gender, email, country, city, birthday, about_me, phone_number, credit_card_number, holder_name, client_address, avatar} = req.body
 
       await User.findByIdAndUpdate(
         {
@@ -101,6 +101,7 @@ const userRoutes = () => {
             country:  country,
             city: city,
             birthday: birthday,
+            avatar: avatar,
             about_me: about_me,
             phone_number: phone_number,
             billing_data : {

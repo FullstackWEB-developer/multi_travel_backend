@@ -10,7 +10,7 @@ dotenv.config();
 
 const storage = multer.diskStorage({
     destination: function (req: any, file: any, cb: any) {
-        cb(null, "../images");
+        cb(null, "./server/client/static/images/avatar");
     },
     filename: function (req: any, file: { fieldname: any; originalname: any; }, cb: (arg0: any, arg1: string) => void) {
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -41,13 +41,15 @@ const upload = multer({
     fileFilter: function (req: any, file: { originalname: any; mimetype: string; }, cb: (arg0: string, arg1: boolean) => void) {
         checkFileType(file, cb);
     },
-    });
+});
+
+
 
 const uploadRoutes = () => {
     const router = Router();
 
     router.post("/", auth, upload.array("image", 10), async (req, res) => {
-        console.log(req.files);    
+        res.send(req.files);
     });
 
   return router;
